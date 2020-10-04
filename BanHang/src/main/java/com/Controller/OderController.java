@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.DTO.CategoryDTO;
@@ -36,6 +37,11 @@ public class OderController {
         return ResponseEntity.ok(orderService.addNewOrderService(request));
     }
 	
+
+    @GetMapping("/get/get_user_order")
+    public ResponseEntity<?> findUserOrder(@RequestParam("userId") int userId, @RequestParam("orderId") int orderId){
+        return ResponseEntity.ok(orderService.findOrderService(userId, orderId));
+    }
 	
 	@GetMapping("/getall_order")
 	  public List<OderDTO> getAllOrder() {

@@ -42,7 +42,7 @@ public class OderService {
 		return order;
 	}
 	
-	public FindUserOrderResponse findOrderUserRespone (int userId, int orderId) {
+	public FindUserOrderResponse findOrderService (int userId, int orderId) {
 		Oder order = orders.findUserOrderById(userId, orderId);
 		if(order != null) {
 			return proOrderService.findByOrderIdService(order.getId());
