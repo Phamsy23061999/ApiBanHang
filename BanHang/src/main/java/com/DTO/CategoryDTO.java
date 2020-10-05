@@ -33,7 +33,10 @@ public class CategoryDTO {
 	
 	public static CategoryDTO transferObject(Category category) {
 		ModelMapper modelmapper = new ModelMapper();
-		return modelmapper.map(category, CategoryDTO.class);
+		if(modelmapper != null) {
+			return modelmapper.map(category, CategoryDTO.class);
+		}
+		return null;
 	}
 	
 	public static Category transferEntity(CategoryDTO category) {

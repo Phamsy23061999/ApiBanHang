@@ -35,12 +35,22 @@ public class OderService {
 
 		return order;
 	}
-	
-	public Oder  addNewOrderService(UserOrderRequest request) {
-		Oder order = orders.saveOrder(request.getUserId());
-		proOrderService.saveProductOder( request.getListOrder(),order.getId());
-		return order;
-	}
+////	//minidev json
+////	public Oder  addNewOrderService(UserOrderRequest request) {
+////		SONObject js = new JSONObject();
+//		try {
+//			Oder order = orders.saveOrder(request.getUserId());
+//			if(order== null) {
+//				js.put("error", "lỗi abc");
+//				return js;
+//			}
+//			proOrderService.saveProductOder( request.getListOrder(),order.getId());
+//			return order;
+//		} catch (Exception e) {
+//			return js.put("error","có lỗi xảy ra");
+//		}
+//	
+//	}
 	
 	public FindUserOrderResponse findOrderService (int userId, int orderId) {
 		Oder order = orders.findUserOrderById(userId, orderId);

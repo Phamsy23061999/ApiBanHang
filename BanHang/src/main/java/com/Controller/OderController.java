@@ -32,10 +32,10 @@ public class OderController {
 		
 	}
 	
-	@PostMapping("/post/create_new_order")
-    public ResponseEntity<?> addNewOrderController(@RequestBody UserOrderRequest request){
-        return ResponseEntity.ok(orderService.addNewOrderService(request));
-    }
+//	@PostMapping("/post/create_new_order")
+//    public ResponseEntity<?> addNewOrderController(@RequestBody UserOrderRequest request){
+//        return ResponseEntity.ok(orderService.addNewOrderService(request));
+//    }
 	
 
     @GetMapping("/get/get_user_order")
@@ -47,5 +47,5 @@ public class OderController {
 	  public List<OderDTO> getAllOrder() {
 	    return  orderService.getAllODer();
 	  }
-	
+	//sdfsdfsdf
 }
