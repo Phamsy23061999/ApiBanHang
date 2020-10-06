@@ -18,6 +18,7 @@ import com.model.ProductOder;
 
 import Request.OrderRequest;
 import Request.UserOrderRequest;
+import net.minidev.json.JSONObject;
 
 @Service
 public class OderService {
@@ -35,22 +36,23 @@ public class OderService {
 
 		return order;
 	}
-////	//minidev json
-////	public Oder  addNewOrderService(UserOrderRequest request) {
-////		SONObject js = new JSONObject();
-//		try {
-//			Oder order = orders.saveOrder(request.getUserId());
-//			if(order== null) {
-//				js.put("error", "lỗi abc");
-//				return js;
-//			}
-//			proOrderService.saveProductOder( request.getListOrder(),order.getId());
-//			return order;
-//		} catch (Exception e) {
-//			return js.put("error","có lỗi xảy ra");
-//		}
-//	
-//	}
+	//minidev json
+	public Oder  addNewOrderService(UserOrderRequest request) {
+		try {
+			Oder order = orders.saveOrder(request.getUserId());
+			if(order != null) {
+				proOrderService.saveProductOder( request.getListOrder(),order.getId());
+				return order;
+			}
+			return null;
+			
+		}catch (Exception e) {
+			return null;
+		}
+			
+		
+	
+	}
 	
 	public FindUserOrderResponse findOrderService (int userId, int orderId) {
 		Oder order = orders.findUserOrderById(userId, orderId);

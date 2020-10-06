@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name ="user")
 public class User {
@@ -31,15 +33,20 @@ public class User {
 	
 	@Column(name = "email")
 	private String email;
+	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date_create")
-	private LocalDate dateCreate;
+	private Date dateCreate;
 	
 	
-	public LocalDate getDateCreate() {
+	
+
+	public Date getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(LocalDate dateCreate) {
+	public void setDateCreate(Date dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 

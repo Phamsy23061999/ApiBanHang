@@ -18,6 +18,7 @@ import com.Service.OderService;
 
 import Request.OrderRequest;
 import Request.UserOrderRequest;
+import net.minidev.json.JSONObject;
 
 @RestController
 @RequestMapping("/order")
@@ -27,15 +28,18 @@ public class OderController {
 	
 	@PostMapping("/add_order")
 	public ResponseEntity<?> addOrder(@RequestBody OrderRequest orders) {
-		orderService.createNewOrder(orders);
-		return ResponseEntity.ok(orderService.createNewOrder(orders));
+		JSONObject js = new JSONObject();
+		js.put("Order", orderService.createNewOrder(orders));
+		return ResponseEntity.ok(js);
 		
 	}
 	
-//	@PostMapping("/post/create_new_order")
-//    public ResponseEntity<?> addNewOrderController(@RequestBody UserOrderRequest request){
-//        return ResponseEntity.ok(orderService.addNewOrderService(request));
-//    }
+	@PostMapping("/post/create_new_order")
+    public ResponseEntity<?> addNewOrderController(@RequestBody UserOrderRequest request){
+		JSONObject js = new JSONObject();
+		js.put("Order", orderService.addNewOrderService(request));
+        return ResponseEntity.ok(js);
+    }
 	
 
     @GetMapping("/get/get_user_order")

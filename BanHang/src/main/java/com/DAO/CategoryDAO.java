@@ -11,6 +11,7 @@ import com.DTO.CategoryDTO;
 import com.DTO.UserDTO;
 import com.Repository.CategoryRepository;
 import com.model.Category;
+import com.model.User;
 
 @Component
 public class CategoryDAO {
@@ -32,9 +33,16 @@ public class CategoryDAO {
 			CategoryDTO cateDTO =  CategoryDTO.transferObject(cate);
 			lists.add(cateDTO);
 		}
-		
 		return lists;
 	}
+	
+	
+	
+	public List<Category> getAllCategory(String keysearch){
+		
+		return repository.findByCategoryLike(keysearch);
+	}
+	
 	
 	public CategoryDTO findById(int id) {
 		Category cate = repository.findById(id).get();

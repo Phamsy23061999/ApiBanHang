@@ -11,6 +11,8 @@ import com.DTO.CategoryDTO;
 import com.Repository.CategoryRepository;
 import com.model.Category;
 
+import net.minidev.json.JSONObject;
+
 
 
 @Service
@@ -18,18 +20,33 @@ public class CategoryService {
 	@Autowired
 	private CategoryDAO categoryDao;
 	
-	public List<CategoryDTO> getAllCategory(){
-		return  categoryDao.findAll();
+	
+	
+	public JSONObject getAllCategoryLike(String keysearch) {
+		JSONObject js = new JSONObject();
+		try {
+			js.put("Category", categoryDao.getAllCategory(keysearch));
+			return js ;
+		} catch (Exception e) {
+			js.put("Error", "Có lỗi xảy Ra");
+			return null;
+		}
+	}
+	
+	public JSONObject findById(int id) {
+		
+		JSONObject js = new JSONObject();
+		try {
+			js.put("Category", categoryDao.findById(id));
+			return js;
+		} catch (Exception e) {
+			js.put("Error", "Có lỗi xảy Ra");
+			return null;
+		}
+		
 	}
 	
 	
-	public CategoryDTO findById(int id) {
-		return categoryDao.findById(id);
-	}
-	
-	public CategoryDTO findByCategoryname(String name) {
-		return categoryDao.findByCategoryname(name);
-	}
 	
 	public Category save(CategoryDTO cate) {
 		return categoryDao.save(cate);

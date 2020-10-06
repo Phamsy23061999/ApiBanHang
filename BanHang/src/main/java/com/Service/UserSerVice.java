@@ -1,6 +1,8 @@
 package com.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,25 +31,28 @@ public class UserSerVice {
 	}
 	
 	public  JSONObject getAllUsername(String keysearch){
+		JSONObject js = new JSONObject();
 		try {
-				JSONObject js = new JSONObject();
+				
 				js.put("User:",userDAO.getAllUserName(keysearch));
 				return  js;
-//				if(keysearch == null) {
-//					JSONObject js = new JSONObject();
-//					js.put("Error", "Lỗi");
-//					return js;
-//				}else {
-//					
-//				}
 				
 			} catch (Exception e) {
-				JSONObject js = new JSONObject();
+				
 				js.put("Error", "Có Lỗi Xảy Ra");
 				return js;
 			}
-			
 		
+	}
+	public JSONObject findByUserStartDateCreateBefore (Date dateCreate) {
+		JSONObject js = new JSONObject();
+		try {
+			js.put("User", userDAO.findByUserStartDateCreateBefor(dateCreate));
+			return js;
+		}catch (Exception e) {
+			js.put("Error", "Có Lỗi Xảy Ra");
+			return js;
+		}
 	}
 	
 }

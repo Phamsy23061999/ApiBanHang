@@ -7,16 +7,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class FindUserOrderResponse {
 	
-	private List<ProductOrderRespone> listOrder;
+
+	
+	private List<ProductOrderRespone> Order;
 	
 	private int totalPrice;
+	
+	
 
-	public List<ProductOrderRespone> getListOrder() {
-		return listOrder;
+	
+
+	public List<ProductOrderRespone> getOrder() {
+		return Order;
 	}
 
-	public void setListOrder(List<ProductOrderRespone> listOrder) {
-		this.listOrder = listOrder;
+	public void setOrder(List<ProductOrderRespone> order) {
+		Order = order;
 	}
 
 	public int getTotalPrice() {

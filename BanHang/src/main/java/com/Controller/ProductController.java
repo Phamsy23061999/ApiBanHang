@@ -22,6 +22,8 @@ import com.Service.CategoryService;
 import com.Service.ProductService;
 import com.model.Product;
 
+import net.minidev.json.JSONObject;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -32,53 +34,49 @@ public class ProductController {
 	private CategoryProductService categoryProductService;
 	
 	@GetMapping("/{id}")
-	  public List<ProductDTO> getProductId(@PathVariable("id") int id) {
-	    return  null;//proService.getProduct(id);
+	  public JSONObject getProductId(@PathVariable("id") int id) {
+		
+	    return  proService.getProductId(id);
 	  }
 	
 	@GetMapping("/getall_product")
-	public List<ProductDTO>getAllProDuct(){
+	public JSONObject getAllProDuct(){
 		return proService.getAllProduct();
 	}
-	//Thêm Một Sản Phẩm Theo Categori_id
+	
 	
 	
 	@PostMapping("/create_product")
-	public ResponseEntity<?> add(@RequestBody ProductDTO pro) {
-		categoryProductService.save(pro);
-		return ResponseEntity.ok(pro);
+	public ResponseEntity<?> add(@RequestBody ProductDTO product) {
+		JSONObject js = new JSONObject();
+		js.put("Product", proService.save(product));
+		return ResponseEntity.ok(js);
+		
 	}
+		
+	
+	
 	//Tìm sản phẩm theo tên và giá 
 	@GetMapping("/search_Productname_Price")
-	 public ResponseEntity<?>searchProductName(@RequestParam("productName") String productName,@RequestParam("price") int price){
+	 public JSONObject searchProductName(@RequestParam("productName") String productName,@RequestParam("price") int price){
 		
-		 return ResponseEntity.ok( proService.findByProductnameAndPrice(productName, price));
+		 return  proService.findByProductnameAndPrice(productName, price);
 	 }
+	
+	
 	 //Tìm sản phẩm theo tên
 	
 	@GetMapping("/search_Productname")
-	 public ResponseEntity<?>searchProductName(@RequestParam("productname") String productname){
-		 return ResponseEntity.ok(proService.findByProductname(productname));
+	 public JSONObject searchProductName(@RequestParam("productname") String productname){
+		 return proService.findByProductname(productname);
 	 }
 	
-	//update sản phẩm
+	//update sản phẩm(cần chỉnh sửa)
 	@PostMapping("/update_product")
-	public ResponseEntity<?> updateProduct(@RequestBody ProductDTO pro){
-		return ResponseEntity.ok(proService.updateProduct(pro));
+	public JSONObject updateProduct(@RequestBody ProductDTO pro){
+		return proService.updateProduct(pro);
 	}
 	
 	
-	
-//	
-//	@PostMapping("/update/{id}")
-//	public String updateProduct(@PathVariable("id") int id, @Validated Product product, BindingResult result, Model model) {
-//		    if (result.hasErrors()) {
-//		        product.setId(id);;
-//		        return "update-product";
-//		    }
-//		    	proService.save(product);
-//				model.addAttribute("products", proService.getAllProduct());
-//				 return "redirect:/index";
-//	}
 		
 }

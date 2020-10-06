@@ -17,6 +17,8 @@ import com.DTO.CategoryDTO;
 import com.Service.CategoryService;
 import com.model.Category;
 
+import net.minidev.json.JSONObject;
+
 
 
 @RestController
@@ -29,31 +31,29 @@ public class CategoryController {
  
 //
 	@GetMapping("/{id}")
-	public ResponseEntity<?> findByUserId(@PathVariable("id") int id) {
-		CategoryDTO category = categoryservice.findById(id);
+	public JSONObject findByUserId(@PathVariable("id") int id) {
+		
+		JSONObject category = categoryservice.findById(id);
 		if(category==null)
 		{
 			System.out.println("ID"+id+"not found");  
 		}
 	
-	return ResponseEntity.ok(category);
+	return category;
 	}
 	
-	@GetMapping("/search_categoryname")
-	public ResponseEntity<?>  findByCategoryname(@RequestParam("name") String name) {
-		CategoryDTO  category = categoryservice.findByCategoryname(name);
-		if(category==null)
-		{
-			System.out.println("ID"+name+"not found");
-		}
-		return ResponseEntity.ok(category);
+	@GetMapping("/search/search_Keysearch")
+	public JSONObject getAllCategoryKeysearch(String keysearch) {
+		return categoryservice.getAllCategoryLike(keysearch);
 	}
+	
 	
 	
 	@PostMapping("/add_category")
 	public ResponseEntity<?> add(@RequestBody CategoryDTO category) {
-		categoryservice.save(category);
-		return ResponseEntity.ok(category);
+		JSONObject js = new JSONObject();
+		js.put("Category",categoryservice.save(category) );
+		return ResponseEntity.ok(js);
 	}
 
 }

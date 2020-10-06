@@ -1,5 +1,7 @@
 package com.Repository;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +21,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(value="SELECT u.* FROM user u WHERE u.username like %:keysearch%",nativeQuery = true)
 	List<User> findByUsernameLike(@Param("keysearch") String keysearch);
 	
+	@Query(value = "SELECT u.* FROM user u WHERE u.date_create > ?1", nativeQuery =  true)
+	List<User> findByUserStartDateCreateBefore(@Param("dateCreate") Date dateCreate);
 }
+
+

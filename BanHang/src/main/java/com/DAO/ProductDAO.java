@@ -2,6 +2,7 @@ package com.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -26,10 +27,22 @@ public class ProductDAO {
 			ProductDTO proDTO =  ProductDTO.transferObject(pro, ProductDTO.class);
 			lists.add(proDTO);
 		}
-		
 		return lists;
 	}
 	
+	
+	public Optional<Product> getByProductId(int id){
+		return repository.findById(id);
+		
+	}
+	 
+	public Product save(ProductDTO product) {
+		Product pro = product.tranferEntity(product);
+		return pro;
+	}
+	public List<Product>getAllProductLike(String keysearch){
+		return repository.findByProductnameLike(keysearch);
+	}
 	
 	
 	public Product updateProuct (ProductDTO productDTO) {
@@ -43,8 +56,7 @@ public class ProductDAO {
 	
 	
 	public List<Product> findByProductnameAndPrice(String productname, int price){
-		return repository.findByProductnameAndPrice(productname, price);
-		
+		return repository.findByProductnameAndPrice(productname, price);	
 	}
 	
 	public Product finByProductname(String productName) {

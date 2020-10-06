@@ -1,5 +1,9 @@
 package com.DAO;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +29,20 @@ public class UserDAO {
 	public List<User> getAllUserName(String keysearch){
 		
 		return userRepository.findByUsernameLike(keysearch);
+	}
+	
+	public List<User> findByUserStartDateCreateBefor(Date dateCreate){
+		
+		try {
+			
+			return userRepository.findByUserStartDateCreateBefore(dateCreate);
+			
+		} catch (Exception e) {
+			
+			return null;
+		}
+		
+		
 	}
 	
 

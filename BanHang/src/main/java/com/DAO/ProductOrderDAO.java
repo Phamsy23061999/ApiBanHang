@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.DTO.ProductDTO;
-import com.DTO.ProductOderDTO;
+
 import com.Repository.ProductOderRepository;
 import com.Repository.ProductRepository;
 import com.Respone.FindUserOrderResponse;
@@ -66,11 +66,12 @@ public class ProductOrderDAO {
 			}).sum();
 		FindUserOrderResponse userOrderResponse = new FindUserOrderResponse();
 		userOrderResponse.setTotalPrice(totalPrice);
-		userOrderResponse.setListOrder(productOrder.stream().map(x ->{
+		userOrderResponse.setOrder(productOrder.stream().map(x ->{
 			ProductOrderRespone productOrderRespone = new ProductOrderRespone();
 			Product product = productReposity.findById(x.getProductId()).orElse(null);
-			ProductDTO productDTO = ProductDTO.transferObject(product,ProductDTO.class);
-			productOrderRespone.setProDTO(productDTO);
+			productOrderRespone.setId(product.getId());
+			productOrderRespone.setProductName(product.getProductName());
+			productOrderRespone.setPrice(product.getPrice());
 			productOrderRespone.setQuantity(x.getQuantity());
 			
 			return productOrderRespone;

@@ -18,15 +18,17 @@ public class UserDTO {
 	
 	private String email;
 	
-	private LocalDate dateCreate;
+	private Date dateCreate;
 	
 	
 
-	public LocalDate getDateCreate() {
+	
+
+	public Date getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(LocalDate dateCreate) {
+	public void setDateCreate(Date dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 

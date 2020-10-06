@@ -1,9 +1,13 @@
 package com.Controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +22,7 @@ import com.Service.UserSerVice;
 import com.model.User;
 
 import net.minidev.json.JSONObject;
+
 
 @RestController
 @RequestMapping("/user")
@@ -36,9 +41,14 @@ public class UserController {
 	@GetMapping("/get/get_keysearch_username")
 	public JSONObject getAllListUser(@RequestParam("keysearch") String keysearch){
 		
-			
 		return  userService.getAllUsername(keysearch);
 	}
 	
+	
+	@GetMapping("/get/get_Date_Create")
+	public JSONObject getAllListUserDateNew(@RequestParam("dateCreate")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateCreate) {
+		
+		return userService.findByUserStartDateCreateBefore(dateCreate);
+	}
 
 }
