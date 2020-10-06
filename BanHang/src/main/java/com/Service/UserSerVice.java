@@ -3,7 +3,7 @@ package com.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,8 @@ import com.Repository.UserRepository;
 import com.model.Category;
 import com.model.User;
 
+import net.minidev.json.JSONObject;
+
 @Service
 public class UserSerVice {
 	
@@ -27,10 +29,24 @@ public class UserSerVice {
 	}
 	
 	public  JSONObject getAllUsername(String keysearch){
-			JSONObject js = new JSONObject();
-			js.put("User:",userDAO.getAllUserName(keysearch));
-			return  js;
-		
+		try {
+				JSONObject js = new JSONObject();
+				js.put("User:",userDAO.getAllUserName(keysearch));
+				return  js;
+//				if(keysearch == null) {
+//					JSONObject js = new JSONObject();
+//					js.put("Error", "Lỗi");
+//					return js;
+//				}else {
+//					
+//				}
+				
+			} catch (Exception e) {
+				JSONObject js = new JSONObject();
+				js.put("Error", "Có Lỗi Xảy Ra");
+				return js;
+			}
+			
 		
 	}
 	

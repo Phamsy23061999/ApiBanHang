@@ -35,13 +35,10 @@ public class UserController {
 	
 	@GetMapping("/get/get_keysearch_username")
 	public JSONObject getAllListUser(@RequestParam("keysearch") String keysearch){
-		JSONObject js = userService.getAllUsername(keysearch);
 		
-		
-		
-		return js;
+			
+		return  userService.getAllUsername(keysearch);
 	}
-	//amdskaskdnaksdnaskdn
-	//bababatatatstata
+	
 
 }

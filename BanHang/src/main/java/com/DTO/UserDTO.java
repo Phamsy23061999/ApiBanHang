@@ -1,5 +1,8 @@
 package com.DTO;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import org.modelmapper.ModelMapper;
 
 import com.model.User;
@@ -15,7 +18,18 @@ public class UserDTO {
 	
 	private String email;
 	
+	private LocalDate dateCreate;
 	
+	
+
+	public LocalDate getDateCreate() {
+		return dateCreate;
+	}
+
+	public void setDateCreate(LocalDate dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+
 	public String getPhone() {
 		return phone;
 	}
